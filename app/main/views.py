@@ -1,4 +1,13 @@
 from flask import render_template,request,redirect,url_for
 from . import main
-from ..request import 
+
+
+
+@main.route('/', methods =  ["POST","GET"])
+def index():
+
+    
+
+    title = 'Home - Personal blogging website'
+    return render_template('index.html', title = title)
 
