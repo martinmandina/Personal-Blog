@@ -1,4 +1,4 @@
-#!/home/martinmandina/Documents/Core/Python/Projects/News-API/virtual/bin/python3.6
+#!/home/martinmandina/Documents/Core/Python/Flask/Watchlist/virtual/bin/python3.6
 # -*- coding: utf-8 -*-
 import re
 import sys
