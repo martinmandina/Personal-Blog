@@ -9,7 +9,7 @@ from wtforms import ValidationError
 
 class NewAccountForm(FlaskForm):
     username = StringField('Your Username', validators=[Required()])
-    email = StringField('INput Email Address', validators=[Email()])
+    email = StringField('Input Email Address', validators=[Email()])
     picture = FileField('Update Profile Picture', validators=[Required()])
     submit = SubmitField('Update Information')
 
@@ -17,13 +17,13 @@ class NewAccountForm(FlaskForm):
         if username.data != current_user.username:
             user = User.query.filter_by(username=username.data).first()
             if user:
-                raise ValidationError('That username is taken. Please choose a different one.')
+                raise ValidationError('That username is already taken.')
 
     def validate_email(self, email):
         if email.data != current_user.email:
             user = User.query.filter_by(email=email.data).first()
             if user:
-                raise ValidationError('That email is taken. Please choose a different one.')
+                raise ValidationError('That email is already taken.')
 
 
 class BlogForm(FlaskForm):
