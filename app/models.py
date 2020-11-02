@@ -17,7 +17,9 @@ class User(UserMixin, db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(255), unique=True, nullable=False)
-
+    email = db.Column(db.String(100), unique=True, index=True)
+    password_hash = db.Column(db.String(255))
+    
     blogs = db.relationship('Blog',backref='author',lazy='dynamic')
 
 
@@ -33,14 +35,18 @@ class User(UserMixin, db.Model):
     def verify_password(self,password):
         return check_password_hash(self.password_hash,password)
 
+    def save_user(self):
+        db.session.add(self)
+        db.session.commit()
 
     def __repr__(self):
         return f'User {self.username}'
 
-class Blog(db.Model):
+class BlogPost(db.Model):
     __tablename__ = 'blogs'
     id = db.Column(db.Integer,primary_key=True)
-    blog_title = db.Column(db.String(255), nullable = False)
+
+    title = db.Column(db.String(255), nullable = False)
     content = db.Column(db.Text, nullable=False)
     author = db.Column(db.String(15), nullable=False, default='MartinJohn')
 
@@ -48,7 +54,7 @@ class Blog(db.Model):
     comment = db.relationship('comments', backref='blog', lazy='dynamic')
 
     def __repr__(self):
-        return f'Title {self.Blog_title}'
+        return f'Title {self.title}'
 
 class Comment(db.Model):
     __tablename__ = 'comments'
@@ -64,7 +70,29 @@ class Comment(db.Model):
         db.session.commit()
 
     def __repr__(self):
-        return f'User:{self.username}'
+        return f'Comment:comment{self.comment}'
+
+class Subscribe(UserMixin, db.Model):
+    __tablename__="subscribes"
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255))
+    title = db.Column(db.String(255))
+
+
+    def save_subscribes(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_subscribes(cls,id):
+        return Subscribe.query.all()
+         
+
+    def __repr__(self):
+        return f'User {self.email}'       
+
+
 
 
 
