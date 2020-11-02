@@ -8,6 +8,6 @@ def index():
 
     
 
-    title = 'Home - Personal blogging website'
+    title = 'Home - Personal Blogging Website'
     return render_template('index.html', title = title)
 
