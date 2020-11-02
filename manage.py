@@ -16,4 +16,5 @@ def make_shell_context():
 
 
 if __name__ == '__main__':
+    app.secret_key = 'SECRET_KEY'
     manager.run()

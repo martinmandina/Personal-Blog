@@ -8,8 +8,8 @@ from flask_login import login_required
 
 @main.route('/', methods =  ["POST","GET"])
 def index():
-    form = BlogForm()
-    
+    # form = BlogForm()
+
 
     
 

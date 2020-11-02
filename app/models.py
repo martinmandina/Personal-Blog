@@ -20,7 +20,7 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(100), unique=True, index=True)
     password_hash = db.Column(db.String(255))
     
-    blogs = db.relationship('Blog',backref='author',lazy='dynamic')
+    blogs = db.relationship('BlogPost',backref='user',lazy='dynamic')
 
 
     # securing passwords
@@ -51,7 +51,7 @@ class BlogPost(db.Model):
     author = db.Column(db.String(15), nullable=False, default='MartinJohn')
 
     user_id = db.Column(db.Integer,db.ForeignKey ('users.id'),nullable=False)
-    comment = db.relationship('comments', backref='blog', lazy='dynamic')
+    comment = db.relationship('Comment', backref='blog', lazy='dynamic')
 
     def __repr__(self):
         return f'Title {self.title}'
