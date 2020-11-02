@@ -28,7 +28,7 @@
                   <li style="color:white;padding:15px;">{{current_user.username}}</li>
                   <li><a href="{{url_for('auth.logout')}}">Log out</a></li>
                   {% else %}
-                  <li><a href="{{url_for('auth.login')}}">Sign in</a></li>
+                  <li><a href="{{url_for('auth.login')}}">Log in</a></li>
                   <li><a href="{{url_for('auth.register')}}">Register</a></li>
                   {%endif%}
                 </ul>
