@@ -11,7 +11,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                   <span class="sr-only">Toggle navigation</span>
                 </button>
-                <a class="navbar-brand" href="/new/blog"> Developer's Insights </a>
+                <a class="navbar-brand" href="/"> Developer's Insights </a>
             </div>
                 <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -29,6 +29,7 @@
                   <li><a href="{{url_for('auth.logout')}}">Log out</a></li>
                   {% else %}
                   <li><a href="{{url_for('auth.login')}}">Sign in</a></li>
+                  <li><a href="{{url_for('auth.register')}}">Register</a></li>
                   {%endif%}
                 </ul>
             </div>
