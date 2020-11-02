@@ -54,6 +54,7 @@ class BlogPost(db.Model):
     content = db.Column(db.Text, nullable=False)
     author = db.Column(db.String(15), nullable=False, default='MartinJohn')
     time_post = db.Column(db.Time, default=datetime.utcnow())
+    category= db.Column(db.String(),index = True)
 
     user_id = db.Column(db.Integer,db.ForeignKey ('users.id'),nullable=False)
     comments = db.relationship('Comment', backref='blog', lazy='dynamic')

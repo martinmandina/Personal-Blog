@@ -37,6 +37,7 @@ def register():
 @login_required
 def logout():
     logout_user()
+    flash('You have logged out')
     return redirect(url_for("auth.login"))  
 
 @auth.route('/subscribe', methods=["GET", "POST"])
