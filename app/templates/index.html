@@ -1,44 +1,34 @@
-{% extends 'base.html'%}
-{% import 'macros.html' as macro%}
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf%}
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        {% if title %}
-        <title> {{ title }}</title>
-        {% else %}
-        <title> Blog -A Developer's Insight</title>
-        {% endif %}
-    </head>
-    {% block content %}
-    <body>
-        <div class="jumbotron">
-            <h1 style="text-align: center">A Developer's Insights</h1>
-            <p style="text-align: center">"A Blog that Resonates with Developers"</p>
-            <h4 style="text-align: center">Welcome</h5>
+
+{% block styles%}
+{{ super() }}
+<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+{% endblock %}
+
+<!-- Content block -->
+<body>
+{% block content %}
+
+<title> {{ title }} </title>
+
+        <div class="col-md-2">
         </div>
-        <div class="container panel panel-default">
-            {% for post in posts %}
-            <div class="panel-heading">
-                <h4>
-                    <a href='{{url_for ("main.blog", id = post.id)}}'>{{post.blog_name}}</a>
-                </h4>
+        <div class="col-md-6">
+            <div class="content-section">
+                <h3>Subscribe</h3>
+                <p class='text-muted'>Subscribe Here 
+                    {{ wtf.quick_form(form) }}
+                </p>
             </div>
-            <div class="panel-body">
-                <p>{{post.blog_info | truncate(500)}}</p>
-            </div>
-             {% endfor %}
+        <div class="col-md-4">
         </div>
-        
-    
-        <!-- Styles block -->
-        {% block styles%} 
-        {{ super() }}
-        <link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
-    
-        <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}"> 
-        {% endblock %} 
-        {% endblock%}
-    </body>
-</html>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+
+</body>
