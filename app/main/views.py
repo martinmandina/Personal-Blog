@@ -1,5 +1,8 @@
 from flask import render_template,request,redirect,url_for
 from . import main
+from .. import db
+from ..models import User
+from flask_login import login_required
 
 
 
