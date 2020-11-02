@@ -45,7 +45,7 @@ class Blog(db.Model):
     author = db.Column(db.String(15), nullable=False, default='MartinJohn')
 
     user_id = db.Column(db.Integer,db.ForeignKey ('users.id'),nullable=False)
-    comment = db.relationship('Comments', backref='blog', lazy='dynamic')
+    comment = db.relationship('comments', backref='blog', lazy='dynamic')
 
     def __repr__(self):
         return f'Title {self.Blog_title}'
@@ -53,9 +53,19 @@ class Blog(db.Model):
 class Comment(db.Model):
     __tablename__ = 'comments'
     id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(255))
     comment = db.Column(db.String(5000))
+
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     blog_id = db.Column(db.Integer, db.ForeignKey("blogs.id"))
+
+    def save_comments(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def __repr__(self):
+        return f'User:{self.username}'
+
 
 
 
