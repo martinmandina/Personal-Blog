@@ -78,6 +78,7 @@ class Subscribe(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255))
     title = db.Column(db.String(255))
+    email = db.Column(db.String(100), unique=True)
 
 
     def save_subscribes(self):
