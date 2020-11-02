@@ -1,6 +1,6 @@
 from flask import render_template,redirect,url_for,flash,request
 from ..models import User
-from .forms import RegistrationForm,LoginForm
+from .forms import RegistrationForm,LoginForm,SubscriptionForm
 from flask_login import login_user,logout_user,login_required
 from .. import db
 from . import auth
@@ -38,4 +38,17 @@ def register():
 def logout():
     logout_user()
     return redirect(url_for("auth.login"))  
+
+@auth.route('/subscribe', methods=["GET", "POST"])
+def subscription():
+    form = SubscriptionForm()
+    if  form.validate_on_submit():
+        subscribers = Subscription(name=form.name.data, email=form.user_email.data)
+
+        db.session.add(subscribers)
+        db.session.commit()
+
+        return redirect(url_for('main.index'))
+        title = "New Subscription"
+    return render_template('auth/subscription.html', subscriptionform=form)
 
