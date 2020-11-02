@@ -8,10 +8,37 @@
         {% if title %}
         <title> {{ title }}</title>
         {% else %}
-        <title> Welcome to the best Movie Review website </title>
+        <title> Blog -A Developer's Insight</title>
         {% endif %}
     </head>
+    {% block content %}
     <body>
-
+        <div class="jumbotron">
+            <h1 style="text-align: center">A Developer's Insights</h1>
+            <p style="text-align: center">"A Blog that Resonates with Developers"</p>
+            <h4 style="text-align: center">Welcome</h5>
+        </div>
+        <div class="container panel panel-default">
+            {% for post in posts %}
+            <div class="panel-heading">
+                <h4>
+                    <a href='{{url_for ("main.blog", id = post.id)}}'>{{post.blog_name}}</a>
+                </h4>
+            </div>
+            <div class="panel-body">
+                <p>{{post.blog_info | truncate(500)}}</p>
+            </div>
+             {% endfor %}
+        </div>
+        
+    
+        <!-- Styles block -->
+        {% block styles%} 
+        {{ super() }}
+        <link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
+    
+        <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}"> 
+        {% endblock %} 
+        {% endblock%}
     </body>
 </html>

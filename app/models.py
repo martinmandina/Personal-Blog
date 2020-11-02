@@ -1,7 +1,8 @@
-from . import db
+from . import db,login_manager
+from datetime import datetime
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash,check_password_hash
-from . import login_manager
+
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -22,7 +23,7 @@ class User(UserMixin, db.Model):
     bio = db.Column(db.String(5000))
     profile_pic_path = db.Column(db.String(255))
     password_secure = db.Column(db.String(5000))
-    
+
     blogs = db.relationship('BlogPost',backref='user',lazy='dynamic')
 
 
@@ -52,12 +53,13 @@ class BlogPost(db.Model):
     title = db.Column(db.String(255), nullable = False)
     content = db.Column(db.Text, nullable=False)
     author = db.Column(db.String(15), nullable=False, default='MartinJohn')
+    time_post = db.Column(db.Time, default=datetime.utcnow())
 
     user_id = db.Column(db.Integer,db.ForeignKey ('users.id'),nullable=False)
-    comment = db.relationship('Comment', backref='blog', lazy='dynamic')
+    comments = db.relationship('Comment', backref='blog', lazy='dynamic')
 
     def __repr__(self):
-        return f'Title {self.title}'
+        return f'User {self.title}'
 
 class Comment(db.Model):
     __tablename__ = 'comments'
