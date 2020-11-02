@@ -19,6 +19,9 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(255), unique=True, nullable=False)
     email = db.Column(db.String(100), unique=True, index=True)
     password_hash = db.Column(db.String(255))
+    bio = db.Column(db.String(5000))
+    profile_pic_path = db.Column(db.String(255))
+    password_secure = db.Column(db.String(5000))
     
     blogs = db.relationship('BlogPost',backref='user',lazy='dynamic')
 
