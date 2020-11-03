@@ -4,6 +4,7 @@ from .forms import RegistrationForm,LoginForm,SubscriptionForm
 from flask_login import login_user,logout_user,login_required
 from .. import db
 from . import auth
+from ..email import mail_message
 
 @auth.route('/login',methods=['GET','POST'])
 def login():
@@ -27,6 +28,8 @@ def register():
         
         db.session.add(user)
         db.session.commit()
+
+        mail_message("Welcome to Personal-Blog","email/welcome_user",user.email,user=user)
 
         flash('Register here')
         return redirect(url_for('auth.login'))

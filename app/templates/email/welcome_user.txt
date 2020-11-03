@@ -1,0 +1,3 @@
+Hello {{user.username}}
+Welcome to Personal-Blog
+Hello thanks for signing up this great Blog.

@@ -27,10 +27,11 @@ def create_app(config_name):
     bootstrap.init_app(app)
     db.init_app(app)
     login_manager.init_app(app)
+    mail.init_app(app)
 
     # configure UploadSet
-    configure_uploads(app,photos)
-    
+    # configure_uploads(app,photos)
+
     # Registering the blueprint
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
