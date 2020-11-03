@@ -23,6 +23,7 @@ def index():
         email = Subscribe(email=form.email.data)
         db.session.add(email)
         db.session.commit()
+   
     return render_template('index.html', title=title,form=form,blogs=blogs)
     
 

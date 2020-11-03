@@ -25,7 +25,7 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Sign In')            
     
 class SubscriptionForm(FlaskForm):
-    name = StringField('Confirm username', validators=[Required()])
+    title = StringField('Confirm username', validators=[Required()])
     email = StringField('Your Email Address', validators=[Required(), Email()])
     submit = SubmitField('Subscribe')
 
