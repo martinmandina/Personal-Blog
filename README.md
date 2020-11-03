@@ -1,5 +1,5 @@
 ## Personal-Blog
-#### https://pitch2pitch.herokuapp.com
+#### 
 #### Live Link:
 ### Description:
 #### This is a Blog application that allows an administrator to share his thoughts or sentiments and also allows users to post new blogs and be able to leave comments in current blogs by other users.
