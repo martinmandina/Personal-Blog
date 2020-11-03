@@ -2,7 +2,7 @@ import os
 
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY')
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://martinmandina:alicewambui@localhost/blogs'
+    # SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://martinmandina:alicewambui@localhost/blogs'
     QUOTE_BASE_URL = 'http://quotes.stormconsultancy.co.uk/quotes/{}?'
 
      #  email configurations
@@ -19,6 +19,7 @@ class Config:
 
 class ProdConfig(Config):
     pass
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
 
 class TestConfig(Config):
     pass
