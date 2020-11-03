@@ -1,18 +1,17 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
 {% import 'bootstrap/wtf.html' as wtf%}
+{% import 'macros.html' as macro %}
 
 
+<body>
 {% block styles%}
 {{ super() }}
 <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
 {% endblock %}
 
-<!-- Content block -->
-<body>
 {% block content %}
-
 <title> {{ title }} </title>
-
+  <div  class="container">
         <div class="col-md-2">
         </div>
         <div class="col-md-6">
@@ -26,8 +25,17 @@
         </div>
         </div>
     </div>
+            
+                <h2 class="text-center" id="posts">User {{current_user.username }}</h2>
+            <ul class="nav nav-pills nav-justified nav-fill" role="tablist">
+                <li class="nav-item" >
+                    <a  class="nav-link" data-toggle="tab" href="/new/blog"><h2><strong>My Blog</strong></h2></a>
+                </li>
+            </ul>
+   
 
-
+    <h3>{{ macro.displayBlogs(blog)}}</h3>
+</div>
 {% endblock %}
 
 

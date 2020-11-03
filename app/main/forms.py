@@ -27,8 +27,12 @@ class NewAccountForm(FlaskForm):
 
 
 class BlogForm(FlaskForm):
-    title = TextAreaField('Choose your blog name',validators = [Required()])
     category=TextAreaField('Post your Blog', validators = [Required()])
+    title = TextAreaField('Choose your Preferred blog name',validators = [Required()])
     Blog_content = TextAreaField('blog content')
+    submit = SubmitField('Submit')
+
+class CommentForm(FlaskForm):
+    comment = StringField('Comment: ', validators=[Required()])
     submit = SubmitField('Submit')
 

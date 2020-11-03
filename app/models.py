@@ -58,7 +58,7 @@ class BlogPost(db.Model):
     time_post = db.Column(db.Time, default=datetime.utcnow())
     category= db.Column(db.String(),index = True)
 
-    user_id = db.Column(db.Integer,db.ForeignKey ('users.id'),nullable=False)
+    user_id = db.Column(db.Integer,db.ForeignKey ('users.id'))
     comments = db.relationship('Comment', backref='blog', lazy='dynamic')
 
     def __repr__(self):

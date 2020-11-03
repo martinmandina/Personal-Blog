@@ -3,9 +3,14 @@
 
 <!-- Content block -->
 {% block content %}
-
+<div class="col-md-1">
+</div>
+<div class="col-md-7">
     <title> {{ title }} </title>
     <legend class="border-bottom mb-4">{{New}}</legend>
        {{wtf.quick_form(form)}}
-
+       
+       <div class="col-md-4">
+       </div>
+       
 {% endblock %}

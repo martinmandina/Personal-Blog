@@ -1,5 +1,5 @@
 from flask import render_template,redirect,url_for,flash,request
-from ..models import User
+from ..models import User,Subscribe
 from .forms import RegistrationForm,LoginForm,SubscriptionForm
 from flask_login import login_user,logout_user,login_required
 from .. import db
@@ -44,7 +44,7 @@ def logout():
 def subscription():
     form = SubscriptionForm()
     if  form.validate_on_submit():
-        subscribers = Subscription(name=form.name.data, email=form.user_email.data)
+        subscribers = Subscribe(name=form.name.data, email=form.user_email.data)
 
         db.session.add(subscribers)
         db.session.commit()

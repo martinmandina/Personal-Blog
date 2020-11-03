@@ -25,16 +25,13 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Sign In')            
     
 class SubscriptionForm(FlaskForm):
-    name = StringField('Enter your username', validators=[Required()])
-    user_email = StringField('Your Email Address', validators=[Required(), Email()])
+    name = StringField('Confirm username', validators=[Required()])
+    email = StringField('Your Email Address', validators=[Required(), Email()])
     submit = SubmitField('Subscribe')
 
-def validate_name(self, data_field):
-    if User.query.filter_by(username=data_field.data).first():
-        raise ValidationError('That username is already taken')
 
-def validate_user_email(self, data_field):
-    if User.query.filter_by(email=data_field.data).first():
-        raise ValidationError('There is an account with that email')
+    def validate_email(self, email):
+        email = Subscribe.query.filter_by(email=email.data).first()
+        if email:
+            raise ValidationError('This email is already subscribed.')
 
-        
