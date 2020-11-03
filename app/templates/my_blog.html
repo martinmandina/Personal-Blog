@@ -1,0 +1,35 @@
+{% extends 'base.html'%}
+{% import "bootstrap/wtf.html" as wtf %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8"> {% if title %}
+    <title> {{ title }}</title>
+    {% else %}
+    <title> Developer Two Cents</title>
+    {% endif %}
+</head>
+
+<!-- Content block -->
+{% block content %}
+<body>
+    <div class="jumbotron">
+        <h3 style="text-align: center">Evolving as a Developer</h3>
+        <p style="text-align: center">"MY sentiments and Thoughts shared"</p>
+        <h4 style="text-align: center">Welcome</h4>
+    </div>
+    
+        
+    {% block styles%} 
+    {{ super() }}
+    <link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}"> 
+    {% endblock %} 
+    {% endblock%}
+
+</body>
+
+</html>

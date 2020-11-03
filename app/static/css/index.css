@@ -1,3 +1,7 @@
 body {
     background-color: rgb(81, 102, 126);
 }
+
+nav.navbar.navbar-default {
+    height: 200px;
+}

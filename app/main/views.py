@@ -42,6 +42,25 @@ def new_post():
         return redirect(url_for('main.index'))
     return render_template('new_blog.html', title='New Post', form=form, New='New Post')
 
+@main.route('/blog/mine', methods=['GET', 'POST'])
+def mine():
+    form = BlogForm()
+
+    if form.validate_on_submit():
+        title = form.title.data
+        Blog_post = form.Blog_post.data
+
+        blog = BlogPost(blog_name=title, blog_info=Blog_post)
+
+        db.session.add(blog)
+        db.session.commit()
+
+        return redirect(url_for('.blogpost'))
+    posts = BlogPost.query.order_by(BlogPost.time_post.desc()).all()
+    
+    return render_template('my_blog.html', form=form, posts=posts)
+
+
 @main.route('/blog/about')
 def about():
     title = 'Blog Description'
