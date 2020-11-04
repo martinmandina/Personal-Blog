@@ -29,11 +29,13 @@ def register():
         db.session.add(user)
         db.session.commit()
 
-        mail_message("Welcome to Personal-Blog","email/welcome_user",user.email,user=user)
+        try:
+            mail_message("Welcome to Personal-Blog","email/welcome_user",user.email,user=user)
 
-        flash('Register here')
-        return redirect(url_for('auth.login'))
-        title = "Blog: Create New Account"
+            flash('Register here')
+        except:
+            return redirect(url_for('auth.login'))
+            title = "Blog: Create New Account"
     return render_template('auth/register.html',registration_form = form)
 
 @auth.route('/logout')
