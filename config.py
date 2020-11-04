@@ -15,10 +15,6 @@ class Config:
     MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
     SENDER_EMAIL = 'mandinasila@gmail.com'
 
-    # @staticmethod
-    # def init_app(app):
-    #     pass
-
 class ProdConfig(Config):
     pass
     SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
