@@ -19,7 +19,7 @@ def index():
     title = 'Home - Personal Blogging Website'
     form = SubscriptionForm()
     if form.validate_on_submit():
-        post = BlogPost(title=form.title.data, content=form.Blog_content.data)
+        post = BlogPost(title=form.title.data, content=form.content.data)
         email = Subscribe(email=form.email.data)
         db.session.add(email)
         db.session.commit()
