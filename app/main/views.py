@@ -1,6 +1,5 @@
 from flask import render_template,request,redirect,url_for
 from . import main
-from  manage import app
 import os
 from .forms import BlogForm,NewAccountForm,CommentForm
 from .. import db,photos
